@@ -8,6 +8,8 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { FormularioComponent } from './pages/registro/formulario/formulario.component';
 import { DatosTenantComponent } from './pages/datos-tenant/datos-tenant.component';
 import { HeaderComponent } from './header/header/header.component';
+import { NgApexchartsModule } from "ng-apexcharts";
+import { GraphComponent } from './pages/datos-tenant/graph/graph.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/registro', pathMatch: 'full' },
@@ -21,7 +23,8 @@ const routes: Routes = [
     RegistroComponent,
     FormularioComponent,
     DatosTenantComponent,
-    HeaderComponent
+    HeaderComponent,
+    GraphComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +32,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
+    NgApexchartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
