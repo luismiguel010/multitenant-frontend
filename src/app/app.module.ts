@@ -10,11 +10,12 @@ import { DatosTenantComponent } from './pages/datos-tenant/datos-tenant.componen
 import { HeaderComponent } from './header/header/header.component';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { GraphComponent } from './pages/datos-tenant/graph/graph.component';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   { path: '', redirectTo: '/registro', pathMatch: 'full' },
   { path: 'registro', component: RegistroComponent },
-  { path: 'datos', component: DatosTenantComponent }
+  { path: 'datos/:id', component: DatosTenantComponent }
 ];
 
 @NgModule({
@@ -32,7 +33,8 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
-    NgApexchartsModule
+    NgApexchartsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,11 @@
 .btn-primary{
-    background-color: #007934;
-    border-color: #007934;
+    background-color: #1976d2;
+    border-color: #1976d2;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
 }

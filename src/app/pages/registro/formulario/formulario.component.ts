@@ -1,5 +1,8 @@
+import { Tenant } from '../../../models/tenant';
+import { RegistroTenantsService } from './../../../services/registro-tenants.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-formulario',
@@ -8,20 +11,32 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class FormularioComponent implements OnInit {
 
-  public tenant: FormGroup;
+  tenantForm: FormGroup;
+  response_server: any;
 
-  constructor(private formBuilder: FormBuilder) {
-    this.tenant = this.formBuilder.group({
-      nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
-      correo: ['', Validators.required],
-      sensor: ['', Validators.required]
-    });
+  constructor(protected registroTenantsService: RegistroTenantsService) { }
+
+  crear() {
+    this.registroTenantsService.crearTenant(this.tenantForm.value)
+      .subscribe({
+        next: (response: string) => { Swal.fire('Creado exitosamente', `${response}`, 'success') },
+        error: (response: string) => { Swal.fire('Error', `Error al crear tenant ${response}`, 'error') },
+        complete: () => { },
+      });
   }
 
-
-
   ngOnInit(): void {
+    this.construirFormularioTenant();
+  }
+
+  private construirFormularioTenant() {
+    this.tenantForm = new FormGroup({
+      id: new FormControl('', Validators.required),
+      nombre: new FormControl('', Validators.required),
+      apellido: new FormControl('', Validators.required),
+      correo: new FormControl('', Validators.required),
+      nombreDispositivoIOT: new FormControl('', Validators.required)
+    });
   }
 
 

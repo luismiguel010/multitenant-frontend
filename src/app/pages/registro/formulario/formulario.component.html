@@ -1,36 +1,49 @@
-<form [formGroup]="tenant">
+<form [formGroup]="tenantForm" (ngSubmit)="crear()">
+    <div class="mb-3">
+        <label class="form-label">Identificador: </label>
+        <input type="text" formControlName="id" class="form-control">
+        <div *ngIf="tenantForm.get('id')?.invalid && tenantForm.get('id')?.dirty">
+            <div *ngIf="tenantForm.get('id')?.errors?.['required']">El identificador es obligatorio</div>
+        </div>
+    </div>
+
     <div class="mb-3">
         <label class="form-label">Nombre: </label>
         <input type="text" formControlName="nombre" class="form-control">
-        <div *ngIf="tenant.get('nombre')?.invalid && tenant.get('apellido')?.dirty">
-            <div *ngIf="tenant.get('nombre')?.errors?.['required']">El nombre es obligatorio</div>
+        <div *ngIf="tenantForm.get('nombre')?.invalid && tenantForm.get('nombre')?.dirty">
+            <div *ngIf="tenantForm.get('nombre')?.errors?.['required']">El nombre es obligatorio</div>
         </div>
     </div>
 
     <div class="mb-3">
         <label>Apellido: </label>
         <input type="text" formControlName="apellido" class="form-control">
-        <div *ngIf="tenant.get('apellido')?.invalid && tenant.get('apellido')?.dirty">
-            <div *ngIf="tenant.get('apellido')?.errors?.['required']">El apellido es obligatorio</div>
+        <div *ngIf="tenantForm.get('apellido')?.invalid && tenantForm.get('apellido')?.dirty">
+            <div *ngIf="tenantForm.get('apellido')?.errors?.['required']">El apellido es obligatorio</div>
         </div>
     </div>
 
     <div class="mb-3">
         <label>Correo electrónico: </label>
         <input type="text" formControlName="correo" class="form-control">
-        <div *ngIf="tenant.get('correo')?.invalid && tenant.get('correo')?.dirty">
-            <div *ngIf="tenant.get('correo')?.errors?.['required']">El correo electrónico es obligatorio</div>
+        <div *ngIf="tenantForm.get('correo')?.invalid && tenantForm.get('correo')?.dirty">
+            <div *ngIf="tenantForm.get('correo')?.errors?.['required']">El correo electrónico es obligatorio</div>
         </div>
     </div>
 
     <div class="mb-3">
         <label>Nombre del dispositivo IoT: </label>
-        <input type="text" formControlName="sensor" class="form-control">
-        <div *ngIf="tenant.get('sensor')?.invalid && tenant.get('sensor')?.dirty">
-            <div *ngIf="tenant.get('sensor')?.errors?.['required']">El nombre del dispositivo es obligatorio</div>
+        <input type="text" formControlName="nombreDispositivoIOT" class="form-control">
+        <div *ngIf="tenantForm.get('nombreDispositivoIOT')?.invalid && tenantForm.get('nombreDispositivoIOT')?.dirty">
+            <div *ngIf="tenantForm.get('nombreDispositivoIOT')?.errors?.['required']">El nombre del dispositivo es
+                obligatorio</div>
         </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Registrar</button>
+
+    <div class="center">
+        <button type="submit" class="btn btn-primary">Registrar</button>
+    </div>
+
 
 </form>
