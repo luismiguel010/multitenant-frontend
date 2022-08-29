@@ -1,9 +1,9 @@
 import { environment } from './../../environments/environment';
 import { Tenant } from '../models/tenant';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { catchError, Observable, throwError } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
 
 @Injectable({
@@ -13,7 +13,11 @@ export class RegistroTenantsService {
 
   constructor(protected http: HttpClient, private router: Router) { }
 
-  crearTenant(tenant: Tenant): Observable<string> {
-    return this.http.post<string>(environment.url_backend + 'ComandoControladorTenant', tenant);
+  private createHeader(contentType: string): any {
+    return { headers: new HttpHeaders({ 'Content-Type': contentType }), responseType: 'text', };
+  }
+
+  async crearTenant(tenant: Tenant): Promise<HttpEvent<string>> {
+    return await firstValueFrom(this.http.post<string>(environment.url_backend + 'ComandoControladorTenant', tenant, this.createHeader('application/json')))
   }
 }

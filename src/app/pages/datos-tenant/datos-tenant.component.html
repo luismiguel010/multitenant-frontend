@@ -1,20 +1,82 @@
-<div class="content" role="main">
-    <div class="row">
-        <div class="col-sm-10">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">{{ tenant.nombre }}</h5>
-                    <p class="card-text">{{ tenant.correo }}</p>
-                    <p class="card-text">{{ tenant.nombreDispositivoIOT }}</p>
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css"
+    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap-extended.min.css">
+<link rel="stylesheet" type="text/css"
+    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/fonts/simple-line-icons/style.min.css">
+<link rel="stylesheet" type="text/css"
+    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/colors.min.css">
+<link rel="stylesheet" type="text/css"
+    href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+
+<p></p>
+<p></p>
+
+<div class="grey-bg container-fluid">
+    <section id="minimal-statistics">
+        <div class="row">
+            <div class="col-12 mt-3 mb-1">
+                <h4 class="text-uppercase">Datos</h4>
+                <p>{{ tenant.nombre }} {{tenant.apellido}}</p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="media d-flex">
+                                <div class="align-self-center">
+                                    <i class="icon-cup success font-large-2 float-right"></i>
+                                </div>
+                                <div class="media-body text-right">
+                                    <h3>{{humedadPromedio}} %</h3>
+                                    <span>Humedad promedio</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="media d-flex">
+                                <div class="align-self-center">
+                                    <i class="icon-energy success font-large-2 float-left"></i>
+                                </div>
+                                <div class="media-body text-right">
+                                    <h3>{{temperaturaPromedio}} °C</h3>
+                                    <span>Temperatura promedio</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-10">
-            <div class="card">
+
+
+    </section>
+
+    <section id="stats-subtitle">
+        <div class="row">
+            <div class="col-12 mt-3 mb-1">
+                <h4 class="text-uppercase">Gráficas</h4>
+                <p>Humedad &amp; temperatura.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
                 <div class="card-body">
-                    <app-graph></app-graph>
+                    <app-graph (humedadPromedioToParent)="obtenerPromedioHumedad($event)"
+                        (temperaturaPromedioToParent)="obtenerPromedioTemperatura($event)"></app-graph>
                 </div>
             </div>
         </div>
-    </div>
+
+    </section>
 </div>

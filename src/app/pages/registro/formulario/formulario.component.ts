@@ -1,4 +1,3 @@
-import { Tenant } from '../../../models/tenant';
 import { RegistroTenantsService } from './../../../services/registro-tenants.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -16,13 +15,10 @@ export class FormularioComponent implements OnInit {
 
   constructor(protected registroTenantsService: RegistroTenantsService) { }
 
-  crear() {
-    this.registroTenantsService.crearTenant(this.tenantForm.value)
-      .subscribe({
-        next: (response: string) => { Swal.fire('Creado exitosamente', `${response}`, 'success') },
-        error: (response: string) => { Swal.fire('Error', `Error al crear tenant ${response}`, 'error') },
-        complete: () => { },
-      });
+  async crear() {
+    await this.registroTenantsService.crearTenant(this.tenantForm.value)
+      .then((response) => { Swal.fire('Registro exitoso', `${response}`, 'success') })
+      .catch(() => { Swal.fire('Error', 'Es posible que el tenant ya exista', 'error') })
   }
 
   ngOnInit(): void {

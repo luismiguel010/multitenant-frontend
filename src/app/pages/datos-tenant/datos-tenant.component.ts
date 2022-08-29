@@ -1,3 +1,4 @@
+import { GraphComponent } from './graph/graph.component';
 import { Tenant } from '../../models/tenant';
 import { InformacionTenantService } from './../../services/informacion-tenant.service';
 import { Component, Input, OnInit } from '@angular/core';
@@ -12,6 +13,8 @@ import Swal from 'sweetalert2';
 export class DatosTenantComponent implements OnInit {
   @Input() id: string;
   tenant: Tenant;
+  humedadPromedio: number;
+  temperaturaPromedio: number;
 
   constructor(private route: ActivatedRoute, protected informacionTenantService: InformacionTenantService) { }
 
@@ -24,5 +27,17 @@ export class DatosTenantComponent implements OnInit {
         next: (response: Tenant) => { this.tenant = response }
       });
   }
+
+  public obtenerPromedioHumedad(humedadPromedio: number) {
+    this.humedadPromedio = humedadPromedio;
+  }
+
+  public obtenerPromedioTemperatura(temperaturaPromedio: number) {
+    this.temperaturaPromedio = temperaturaPromedio;
+  }
+
+
+
+
 
 }
