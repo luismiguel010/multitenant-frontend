@@ -15,6 +15,8 @@ export class DatosTenantComponent implements OnInit {
   tenant: Tenant;
   humedadPromedio: number;
   temperaturaPromedio: number;
+  color: string;
+  nombreTenant: string;
 
   constructor(private route: ActivatedRoute, protected informacionTenantService: InformacionTenantService) { }
 
@@ -24,7 +26,11 @@ export class DatosTenantComponent implements OnInit {
       .subscribe({
         complete: () => { },
         error: () => { Swal.fire('Error', 'Error al obtener la información del tenant', 'error') },
-        next: (response: Tenant) => { this.tenant = response }
+        next: (response: Tenant) => {
+          this.tenant = response;
+          this.color = this.tenant.color
+          this.nombreTenant = this.tenant.nombre + " " + this.tenant.apellido
+        }
       });
   }
 

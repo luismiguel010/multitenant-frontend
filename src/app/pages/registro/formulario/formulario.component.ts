@@ -31,7 +31,8 @@ export class FormularioComponent implements OnInit {
       nombre: new FormControl('', Validators.required),
       apellido: new FormControl('', Validators.required),
       correo: new FormControl('', Validators.required),
-      nombreDispositivoIOT: new FormControl('', Validators.required)
+      nombreDispositivoIOT: new FormControl('', Validators.required),
+      color: new FormControl('', Validators.required)
     });
   }
 

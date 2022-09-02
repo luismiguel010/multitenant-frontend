@@ -11,11 +11,12 @@ import { HeaderComponent } from './header/header/header.component';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { GraphComponent } from './pages/datos-tenant/graph/graph.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderDatosComponent } from './pages/datos-tenant/header-datos/header-datos.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/registro', pathMatch: 'full' },
   { path: 'registro', component: RegistroComponent },
-  { path: 'datos/:id', component: DatosTenantComponent }
+  { path: ':id', component: DatosTenantComponent }
 ];
 
 @NgModule({
@@ -25,7 +26,8 @@ const routes: Routes = [
     FormularioComponent,
     DatosTenantComponent,
     HeaderComponent,
-    GraphComponent
+    GraphComponent,
+    HeaderDatosComponent
   ],
   imports: [
     BrowserModule,

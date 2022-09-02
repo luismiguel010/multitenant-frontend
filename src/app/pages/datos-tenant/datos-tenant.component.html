@@ -9,6 +9,8 @@
     href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
+<app-header-datos [color]="color" [nombreTenant]="nombreTenant"></app-header-datos>
+
 <p></p>
 <p></p>
 
@@ -17,7 +19,7 @@
         <div class="row">
             <div class="col-12 mt-3 mb-1">
                 <h4 class="text-uppercase">Datos</h4>
-                <p>{{ tenant.nombre }} {{tenant.apellido}}</p>
+                <p>Humedad &amp; temperatura.</p>
             </div>
         </div>
 
@@ -29,7 +31,7 @@
                         <div class="card-body">
                             <div class="media d-flex">
                                 <div class="align-self-center">
-                                    <i class="icon-cup success font-large-2 float-right"></i>
+                                    <i class="icon-cup font-large-2 float-right" style="color: {{color}};"></i>
                                 </div>
                                 <div class="media-body text-right">
                                     <h3>{{humedadPromedio}} %</h3>
@@ -46,7 +48,7 @@
                         <div class="card-body">
                             <div class="media d-flex">
                                 <div class="align-self-center">
-                                    <i class="icon-energy success font-large-2 float-left"></i>
+                                    <i class="icon-energy font-large-2 float-left'" style="color: {{color}};"></i>
                                 </div>
                                 <div class="media-body text-right">
                                     <h3>{{temperaturaPromedio}} °C</h3>
@@ -72,7 +74,7 @@
         <div class="card">
             <div class="card-content">
                 <div class="card-body">
-                    <app-graph (humedadPromedioToParent)="obtenerPromedioHumedad($event)"
+                    <app-graph [color]="color" (humedadPromedioToParent)="obtenerPromedioHumedad($event)"
                         (temperaturaPromedioToParent)="obtenerPromedioTemperatura($event)"></app-graph>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 import { DispositivoIoT } from '../../../models/dispositivosiot';
 import { InformacionDispositivoService } from './../../../services/informacion-dispositivo.service';
-import { Component, EventEmitter, Injectable, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Injectable, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {
   ChartComponent,
@@ -33,6 +33,7 @@ export type ChartOptions = {
   providedIn: 'root'
 })
 export class GraphComponent implements OnInit {
+  @Input() public color: string;
   @Output() public humedadPromedioToParent = new EventEmitter<number>();
   @Output() public temperaturaPromedioToParent = new EventEmitter<number>();
   @ViewChild("chart") chart: ChartComponent;
@@ -81,6 +82,7 @@ export class GraphComponent implements OnInit {
 
   graph_humidity(tiempoDeMuestra: string[], humidity: number[]) {
     this.chartOptionsTemperature = {
+      colors: [this.color, this.color],
       series: [
         {
           name: "Humedad",
@@ -118,6 +120,7 @@ export class GraphComponent implements OnInit {
 
   graph_temperature(tiempoDeMuestra: string[], temperaturas: number[]) {
     this.chartOptionsHumidity = {
+      colors: [this.color, this.color],
       series: [
         {
           name: "Temperatua °C",

@@ -1,3 +1,5 @@
+<app-header></app-header>
+
 <form [formGroup]="tenantForm" (ngSubmit)="crear()">
     <div class="mb-3">
         <label class="form-label">Identificador: </label>
@@ -37,6 +39,14 @@
         <div *ngIf="tenantForm.get('nombreDispositivoIOT')?.invalid && tenantForm.get('nombreDispositivoIOT')?.dirty">
             <div *ngIf="tenantForm.get('nombreDispositivoIOT')?.errors?.['required']">El nombre del dispositivo es
                 obligatorio</div>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label>Color: </label>
+        <input type="color" formControlName="color" class="form-control">
+        <div *ngIf="tenantForm.get('color')?.invalid && tenantForm.get('color')?.dirty">
+            <div *ngIf="tenantForm.get('color')?.errors?.['required']">El color de la vista es obligatorio</div>
         </div>
     </div>
 
